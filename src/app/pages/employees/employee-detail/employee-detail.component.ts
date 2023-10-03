@@ -28,9 +28,6 @@ export class EmployeeDetailComponent {
   }
 
   private getEmployee(): void {
-    // // Navega a otra vista y pasa el ID como parámetro
-    // this.router.navigate(['employee-detail'], { relativeTo: this.route });
-    
     this.employeesService.getEmployee(this.employeeId).subscribe((result) => {
       this.employee = result;
       console.log(result);

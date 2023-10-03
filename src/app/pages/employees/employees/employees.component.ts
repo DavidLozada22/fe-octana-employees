@@ -9,8 +9,11 @@ import { EmployeesService } from 'src/app/services/employees.service';
   templateUrl: './employees.component.html',
   styleUrls: ['./employees.component.scss']
 })
+
 export class EmployeesComponent {
   public employeeItems: EmployeeModel[] = [];
+  public filteredEmployees: EmployeeModel[] = this.employeeItems;
+  public search: string = '';
 
   constructor(private router: Router, private employeesService: EmployeesService, private employeeMock: EmployeeMock) {}
 
@@ -23,10 +26,9 @@ export class EmployeesComponent {
   }
 
   private getEmployees(): void {
-    // // Navega a otra vista y pasa el ID como parámetro
-    // this.router.navigate(['employee-detail'], { relativeTo: this.route });
     this.employeesService.getEmployees().subscribe((result) => {
       this.employeeItems = result;
+      this.filteredEmployees = result;
       console.log(result);
     }, error => {
       console.log(error);
@@ -35,9 +37,21 @@ export class EmployeesComponent {
 
   // private getEmployees(): void {
   //   this.employeeItems = this.employeeMock.getEmployees();
+  //   this.filteredEmployees = this.employeeMock.getEmployees();
   // }
 
   public detailsOfEmployee(id: number): void {
     this.router.navigate(['employee-detail', id]);
+  }
+
+  filterEmployees() {
+    if (this.search.trim() === '') {
+      this.filteredEmployees = this.employeeItems;
+    } else {
+      this.filteredEmployees = this.employeeItems.filter((employee) =>
+      employee.employee_name.toLowerCase().includes(this.search.toLowerCase()) ||
+      employee.id.toString().toLowerCase().includes(this.search.toLowerCase())
+      );
+    }
   }
 }

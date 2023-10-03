@@ -14,12 +14,9 @@ export class EmployeesService {
 
   public getEmployees(): Observable<EmployeeModel[]> {
     return this.http.get<EmployeeModel[]>(`${this.URL_BASE}/Employees/GetEmployees`);
-    //return this.http.get<EmployeeModel[]>(`https://localhost:7251/Employees/GetEmployees`);
   }
 
   public getEmployee(id: number): Observable<EmployeeModel> {
-    // return this.http.get<EmployeeModel[]>(`${this.URL_BASE}/Employees/GetEmployees`);
     return this.http.get<EmployeeModel>(`${this.URL_BASE}/Employees/GetEmployeeById/${id}`);
-    // return this.http.get<EmployeeModel>(`https://localhost:7251/Employees/GetEmployeeById/${id}`);
   }
 }

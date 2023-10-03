@@ -8,7 +8,7 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { EmployeesComponent } from './pages/employees/employees/employees.component';
 import { EmployeeDetailComponent } from './pages/employees/employee-detail/employee-detail.component';
 import { EmployeeMock } from './mocks/employee.mock';
-
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,8 @@ import { EmployeeMock } from './mocks/employee.mock';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [EmployeeMock],
   bootstrap: [AppComponent]
